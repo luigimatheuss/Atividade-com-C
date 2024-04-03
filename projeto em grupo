@@ -1,0 +1,65 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+
+int verificarpar(int num) {
+    return num % 2 == 0;
+}
+
+int main() {
+	setlocale(LC_ALL,"");
+    int num[5];
+    int i;
+
+    int quantpares = 0, quantimpares = 0, quantpos = 0, quantneg = 0;
+    int maiornum, menornum, somatotal = 0, somapares = 0, somaimpares = 0;
+
+    for (i = 0; i < 5; i++) {
+        printf("Digite o %dº número inteiro: ", i + 1);
+        scanf("%d", &num[i]);
+    }
+
+    maiornum = menornum = num[0];
+
+    for (i = 0; i < 5; i++) {
+        if (verificarpar(num[i])) {
+            quantpares++;
+            somapares += num[i];
+        } else {
+            quantimpares++;
+            somaimpares += num[i];
+        }
+
+        if (num[i] > 0) {
+            quantpos++;
+        } else if (num[i] < 0) {
+            quantneg++;
+        }
+
+        if (num[i] > maiornum) {
+            maiornum = num[i];
+        } else if (num[i] < menornum) {
+            menornum = num[i];
+        }
+
+        somatotal += num[i];
+    }
+
+    float mediapares, mediaimpares, mediatotal;
+    mediapares = (quantpares != 0) ? (float)somapares / quantpares : 0;
+    mediaimpares = (quantimpares != 0) ? (float)somaimpares / quantimpares : 0;
+    mediatotal = (float)somatotal / 5;
+
+    
+    printf("Quantidade de números pares: %d\n", quantpares);
+    printf("Quantidade de números ímpares: %d\n", quantimpares);
+    printf("Quantidade de números positivos: %d\n", quantpos);
+    printf("Quantidade de números negativos: %d\n", quantneg);
+    printf("Quantidade de números inseridos: %d\n", 5);
+    printf("Maior número: %d\n", maiornum);
+    printf("Menor número: %d\n", menornum);
+    printf("Média de números pares: %.2f\n", mediapares);
+    printf("Média de números ímpares: %.2f\n", mediaimpares);
+    printf("Média de todos os números inseridos: %.2f\n", mediatotal);
+    
+    return 0; }
